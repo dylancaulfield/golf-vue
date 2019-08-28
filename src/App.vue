@@ -1,36 +1,94 @@
 <template>
-  <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-app-bar>
+    <v-app id="inspire">
+        <v-navigation-drawer
+                v-model="drawer"
+                app
+        >
+            <v-list dense>
+                <v-list-item exact to="/">
+                    <v-list-item-action>
+                        <v-icon>home</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>Home</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item exact to="/results">
+                    <v-list-item-action>
+                        <v-icon>equalizer</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>Results</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item disabled exact to="/players">
+                    <v-list-item-action>
+                        <v-icon>supervisor_account</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>Players</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item disabled exact to="/courses">
+                    <v-list-item-action>
+                        <v-icon>golf_course</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>Courses</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </v-navigation-drawer>
 
-    <v-content>
-      <HelloWorld/>
-    </v-content>
-  </v-app>
+        <v-app-bar
+                app
+                color="primary"
+                dark
+        >
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-toolbar-title>The Bogey Men</v-toolbar-title>
+        </v-app-bar>
+
+        <v-content>
+            <router-view></router-view>
+        </v-content>
+        <v-footer
+                color="primary"
+                app
+        >
+            <span class="white--text">&copy; 2019 - Dylan Caulfield</span>
+        </v-footer>
+    </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+    import {mapActions} from "vuex";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-  },
-  data: () => ({
-    //
-  }),
-};
+    export default {
+        name: 'App',
+
+        props: {
+            source: String
+        },
+
+        components: {},
+
+        methods: {
+            ...mapActions([
+                "fetchResults",
+                "fetchPlayers",
+                "fetchCourses"
+            ])
+        },
+
+        data: () => ({
+            drawer: null
+        }),
+
+        created() {
+            this.fetchResults();
+            this.fetchPlayers();
+            this.fetchCourses();
+        }
+    };
 </script>

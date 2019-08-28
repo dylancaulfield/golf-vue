@@ -1,13 +1,14 @@
 <template>
-  <HelloWorld />
+    <v-container>
+        <LatestResult />
+    </v-container>
+
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld';
+    import LatestResult from "../components/results/LatestResult";
 
-export default {
-  components: {
-    HelloWorld,
-  },
-};
+    export default {
+        components: {LatestResult},
+    };
 </script>
