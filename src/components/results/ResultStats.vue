@@ -24,7 +24,7 @@
 
 
 
-        <div class="my-6">
+        <div class="mb-6">
             <GChart
                     :settings="{packages: ['corechart']}"
                     type="LineChart"
