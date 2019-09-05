@@ -1,7 +1,7 @@
 <template>
     <v-card class="px-4">
 
-        <v-simple-table class="my-6">
+        <v-simple-table>
             <tbody>
                 <tr>
                     <td>Best Player</td>
