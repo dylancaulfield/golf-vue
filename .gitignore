@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
-# for now until travis .... /dist
+
+/dist
+/docs
 
 # local env files
 .env.local
